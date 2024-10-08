@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Ticket Booking</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">MovieTicket</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#movie-list">Movies</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="login.html">Login</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Search Section -->
+    <section class="bg-dark text-white py-5">
+      <div class="container">
+        <h2 class="text-center mb-4">Cari Film Favorit Anda</h2>
+        <form id="searchForm" class="d-flex justify-content-center">
+          <input
+            class="form-control me-2 w-50"
+            type="search"
+            placeholder="Masukkan judul film"
+            aria-label="Search"
+            id="searchInput"
+          />
+          <button class="btn btn-warning" type="submit">
+            <i class="bi bi-search"></i> Cari
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!--iklan-->
+    <div
+      id="carouselExampleSlidesOnly"
+      class="carousel slide"
+      data-bs-ride="carousel"
+    >
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="assets/1.png" class="d-block w-100" alt="..." />
+        </div>
+        <div class="carousel-item">
+          <img src="assets/Zee Poster.png" class="d-block w-100" alt="..." />
+        </div>
+        <div class="carousel-item">
+          <img src="assets/🖤 (1).png" class="d-block w-100" alt="..." />
+        </div>
+      </div>
+    </div>
+
+    <!-- Movie List Section -->
+    <div class="container mt-5">
+      <h2 class="text-center mb-4">Daftar Film Tersedia</h2>
+      <div class="row" id="movie-list">
+        <!-- Movie List will be populated here by JavaScript -->
+      </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div
+      class="modal fade"
+      id="bookingModal"
+      tabindex="-1"
+      aria-labelledby="bookingModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-warning text-dark">
+            <h5 class="modal-title" id="bookingModalLabel">Pesan Tiket Anda</h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="bookingForm">
+              <div class="mb-3">
+                <label for="movieTitle" class="form-label">Judul Film</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="movieTitle"
+                  readonly
+                />
+              </div>
+              <div class="mb-3">
+                <label for="name" class="form-label">Nama Anda</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  required
+                  placeholder="Masukkan nama Anda"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="seats" class="form-label">Jumlah Kursi</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="seats"
+                  required
+                  min="1"
+                  max="10"
+                  value="1"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Alamat Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  required
+                  placeholder="Masukkan email Anda"
+                />
+              </div>
+              <button type="submit" class="btn btn-warning w-100">
+                Konfirmasi Pemesanan
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div
+      class="modal fade"
+      id="successModal"
+      tabindex="-1"
+      aria-labelledby="successModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header bg-success text-white">
+            <h5 class="modal-title" id="successModalLabel">
+              Pemesanan Berhasil
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>Tiket Anda telah berhasil dipesan!</p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-success"
+              data-bs-dismiss="modal"
+            >
+              OK
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS dan Dependensi -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+  </body>
+</html>
